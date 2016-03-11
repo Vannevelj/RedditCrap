@@ -22,6 +22,11 @@ So does your mom.
 
 I'm very much aware of it. Feel free to make a PR and prettify it.
 
+## Your code also sucks
+
+I'm not typically a Javascript dev so this is me venturing in these lands. 
+I do appreciate any pointers you might have on improving the code so get in touch with me (email, PR, issue, etc) and let me know what can be improved.
+
 ## What features are planned?
 
 Take a look here: https://github.com/Vannevelj/RedditCrap/labels/feature
