@@ -1,7 +1,7 @@
 var shittyCrapSites = ['dailymail.co.uk', 'independent.co.uk', 'ibtimes.co.uk', 'huffingtonpost.com', 'rt.com', 'express.co.uk', 'telegraph.co.uk'];
 
 // We seed the storage with crappy sites if none are found yet
-chrome.storage.sync.get(['crappySites', 'crappyAction'], function (data) {
+chrome.storage.sync.get(['crappySites', 'crappyAction', 'crappyColor'], function (data) {
     if (!data.crappySites || data.crappySites.length === 0) {
         chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function () {});
     }
@@ -12,6 +12,14 @@ chrome.storage.sync.get(['crappySites', 'crappyAction'], function (data) {
     } else {
         selectElement.selectedIndex = data.crappyAction;
     }
+
+    var selectElement2 = document.getElementById('radioColor');
+    if (!data.crappyColor) {
+        var color = document.querySelector('input[name = "color"]:checked').value;
+        chrome.storage.sync.set({ 'crappyColor': color }, function () {});
+    } else {
+        selectElement2.value = data.crappyColor;
+    }
 });
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -20,6 +28,13 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('siteForm').addEventListener('submit', add);
     document.getElementById('reset').addEventListener('click', reset);
     document.getElementById('crappyAction').addEventListener('change', actionSettingChanged);
+    var radios = document.forms["radio-form"].elements["color"];
+    
+    for(var i = 0, max = radios.length; i < max; i++) {
+        radios[i].onclick = function() {
+            colorSettingChanged();
+        }
+    }
 });
 
 function displayExistingFilters() {
@@ -107,4 +122,10 @@ function actionSettingChanged() {
     var selectedOption = selectElement.selectedIndex;
 
     chrome.storage.sync.set({ 'crappyAction': selectedOption }, function () {});
+}
+
+function colorSettingChanged() {
+    var selectedOption = document.querySelector('input[name = "color"]:checked').value;
+
+    chrome.storage.sync.set({ 'crappyColor': selectedOption }, function () {});
 }
