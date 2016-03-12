@@ -3,7 +3,13 @@ chrome.storage.onChanged.addListener(function(changes, area) {
     checkCrap();
 })
 
-var counter = 1;
+// We have to load our configuration file first
+var config;
+var xhr = new XMLHttpRequest();
+xhr.onload = function() { config = JSON.parse(xhr.response); }
+xhr.open("GET", chrome.extension.getURL('/app/conf/config.json'), true);
+xhr.send();
+
 // Finds all the appropriate domains in the DOM, checks whether they're blacklisted and acts accordingly
 function checkCrap() {
     var domains = document.getElementsByClassName('domain');
@@ -25,11 +31,11 @@ function checkCrap() {
             for (var index = 0; index < data.crappySites.length; index++) {
                 var shouldBeColoured = data.crappySites[index].indexOf(url) > -1;
                 if (shouldBeColoured) {
-                    if (data.crappyAction === 1) {
+                    if (data.crappyAction === config.DESIRED_ACTION_HIGHLIGHT) {
                         parentNode.style.backgroundColor = 'red';
                     }
 
-                    if (data.crappyAction === 2) {
+                    if (data.crappyAction === config.DESIRED_ACTION_HIDE) {
                         entryNode.style.display = 'none';
                     }
 
