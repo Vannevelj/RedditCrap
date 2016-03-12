@@ -69,13 +69,7 @@ function remove(value) {
         var sites = data.crappySites;
         console.log('trying to remove ' + value);
 
-        var newSites = [];
-        for (var i = 0; i < sites.length; i++) {
-            if (sites[i] !== value) {
-                newSites.push(sites[i]);
-            }
-        }
-
+        var newSites = sites.filter(site => site !== value);
         console.log('new list: ' + newSites);
 
         chrome.storage.sync.set({ 'crappySites': newSites }, function() { });
