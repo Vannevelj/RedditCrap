@@ -20,7 +20,6 @@ fieldset {
     border-radius: 5px;
 }
 
-
 .radio-color{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */
@@ -29,6 +28,6 @@ fieldset {
   cursor:pointer;
   border:2px solid transparent;
 }
-.radio-color:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+.radio-color:checked + svg{ /* (RADIO CHECKED) IMAGE STYLES */
   border:2px solid #000;
 }
