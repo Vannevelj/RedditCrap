@@ -52,12 +52,8 @@ input[type="text"]{
     padding: 0 3px;
     transition: 0.2s;
 }
-input[type="text"]:hover{
+input[type="text"]:hover, input[type="text"]:focus{
     border: thin solid #B5B5B5;
-    border-right: none;
-}
-input[type="text"]:focus{
-    border: thin solid #878787;
     border-right: none;
 }
 
@@ -94,6 +90,7 @@ option{
 
 #reset{
     float: right;
+    margin-bottom: 5px;
 }
 
 /*Colors*/
