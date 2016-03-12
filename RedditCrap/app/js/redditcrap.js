@@ -11,7 +11,7 @@ function checkCrap() {
         console.log(data.crappyColour);
         for (var i = 0; i < domains.length; i++) {
             // urls are in the form of '(url)'
-            // (surrounded by brackets)
+            // (surrounded by brackets) 
             var url = domains[i].textContent.substring(1, domains[i].textContent.length - 1);
 
             var parentNode = getParentByClass(domains[i], 'title');
@@ -27,7 +27,7 @@ function checkCrap() {
                 var shouldBeColoured = data.crappySites[index].indexOf(url) > -1;
                 if (shouldBeColoured) {
                     if (data.crappyAction === 1) {
-                        parentNode.style.backgroundColor = ((data.crappyColour == undefined) ? 'red' : data.crappyColour);
+                        parentNode.style.backgroundColor = ((data.crappyColour === undefined) ? 'red' : data.crappyColour);
                     }
 
                     if (data.crappyAction === 2) {
