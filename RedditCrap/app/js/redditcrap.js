@@ -12,38 +12,41 @@ xhr.send();
 
 // Finds all the appropriate domains in the DOM, checks whether they're blacklisted and acts accordingly
 function checkCrap() {
-    var domains = document.getElementsByClassName('domain');
     chrome.storage.sync.get(['crappySites', 'crappyAction'], function(data) {
-        for (var i = 0; i < domains.length; i++) {
-            // urls are in the form of '(url)'
-            // (surrounded by brackets)
-            var url = domains[i].textContent.substring(1, domains[i].textContent.length - 1);
+        var domains = Array.prototype.slice.call(document.getElementsByClassName('domain'));
 
-            var parentNode = getParentByClass(domains[i], 'title');
-            var entryNode = getThingNode(parentNode);
-            if (parentNode.style.backgroundColor === 'red' ||
-                entryNode.style.display === 'none') {
+        domains.map(function(domain) {
+            var parentNode = getParentByClass(domain, 'title');
+            return {
+                url: getUrl(domain),
+                parent: parentNode,
+                entry: getThingNode(parentNode)
+            }
+        }).forEach(domainData => {
+            if (domainData.parent.style.backgroundColor === 'red' ||
+                domainData.entry.style.display === 'none') {
 
-                parentNode.style.backgroundColor = '';
-                entryNode.style.display = '';
+                domainData.parent.style.backgroundColor = '';
+                domainData.entry.style.display = '';
             }
 
-            for (var index = 0; index < data.crappySites.length; index++) {
-                var shouldBeColoured = data.crappySites[index].indexOf(url) > -1;
-                if (shouldBeColoured) {
-                    if (data.crappyAction === config.DESIRED_ACTION_HIGHLIGHT) {
-                        parentNode.style.backgroundColor = 'red';
-                    }
+            if (data.crappySites.indexOf(domainData.url) > -1) {
+                if (data.crappyAction === config.DESIRED_ACTION_HIGHLIGHT) {
+                    domainData.parent.style.backgroundColor = 'red';
+                }
 
-                    if (data.crappyAction === config.DESIRED_ACTION_HIDE) {
-                        entryNode.style.display = 'none';
-                    }
-
-                    break;
+                if (data.crappyAction === config.DESIRED_ACTION_HIDE) {
+                    domainData.entry.style.display = 'none';
                 }
             }
-        }
+        });
     });
+}
+
+// urls are in the form of '(url)'
+// (surrounded by brackets)
+function getUrl(urlNode) {
+    return urlNode.textContent.substring(1, urlNode.textContent.length - 1)
 }
 
 function getParentByClass(currentNode, className) {
