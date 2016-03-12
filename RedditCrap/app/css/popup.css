@@ -52,9 +52,11 @@ input[type="text"]{
     padding: 0 3px;
     transition: 0.2s;
 }
-input[type="text"]:hover, input[type="text"]:focus{
-    border: thin solid #B5B5B5;
-    border-right: none;
+input[type="text"]:hover{
+    border-color: #B5B5B5;
+}
+input[type="text"]:focus{
+    border-color: #878787;
 }
 
 input[type="submit"], button{
@@ -90,7 +92,6 @@ option{
 
 #reset{
     float: right;
-    margin-bottom: 5px;
 }
 
 /*Colors*/
