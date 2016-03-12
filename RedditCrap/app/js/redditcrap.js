@@ -50,19 +50,11 @@ function getUrl(urlNode) {
 }
 
 function getParentByClass(currentNode, className) {
-    while (currentNode = currentNode.parentElement) {
-        if (currentNode.classList.contains(className)) {
-            return currentNode;
-        }
-    }
+    return currentNode.classList.contains(className) ? currentNode : getParentByClass(currentNode.parentElement, className);
 }
 
 function getThingNode(parentNode) {
-    while (parentNode = parentNode.parentElement) {
-        if (parentNode.getAttribute('data-fullname')) {
-            return parentNode;
-        }
-    }
+    return parentNode.getAttribute('data-fullname') ? parentNode : getThingNode(parentNode.parentElement);
 }
 
 // In this section we perform crapchecks when the page has changed
