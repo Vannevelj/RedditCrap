@@ -10,36 +10,30 @@
 </head>
 
 <body>
-    <fieldset>
-        <legend> Settings </legend>
-        <form id="actionForm">
-            <select id="crappyAction">
-                <option value='none' disabled selected>What happens to blacklisted entries?</option>
-                <option value="colour">Colourize</option>
-                <option value="hide">Hide</option>
-            </select>
-        </form>
-    </fieldset>
-
+    <form id="actionForm">
+        <select id="crappyAction">
+            <option value='none' disabled selected>What happens to blacklisted entries?</option>
+            <option value="colour">Colourize</option>
+            <option value="hide">Hide</option>
+        </select>
+    </form>
     <form id="siteForm">
-        <label for="siteInput"> Enter site: </label>
-        <input type="text" id="siteInput">
-        <input type="submit" value="Add to blacklist">
+        <input type="text" id="siteInput" placeholder="Website URL">
+        <input type="submit" class="green" value="Add to blacklist">
     </form>
 
     <ul id="crappySites">
 
     </ul>
-    <button id='reset'> Reset to default blacklist </button>
-    <br>
 
-
-    <fieldset>
+    <button id='reset' class="red">Reset to default blacklist</button>
+    <br><br>
+  <fieldset>
         <legend> Highlight Colour </legend>
         <form name="radio-form">
 
             <label>
-                <input type="radio" class="radio-color" name="color" id="radioColor" value="red" checked/>
+                <input type="radio" class="radio-color" name="color" id="radioColor" value="red"/>
                 <svg width="16" height="16">
                     <rect width="16" height="16" style="fill:rgb(255,0,0);" />
                 </svg>
@@ -64,7 +58,6 @@
          </label>
      </form>
  </fieldset>
-</body>
 </body>
 
 <script src="../js/popup.js"></script>

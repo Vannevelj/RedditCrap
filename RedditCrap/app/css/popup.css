@@ -1,25 +1,109 @@
 body {
     font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
-    width: 300px;
+    width: 310px;
     height: 100%;
 }
 
 input {
-    padding: 5px;
-    margin: 2px;
     border-radius: 3px;
 }
 
-li {
-    font-size: 1.5em;
+ul{
+    list-style: none;
+    font-size: 16px;
+    padding: 0px;
+    margin-top: 10px;
 }
 
-fieldset {
-    padding: 5px;
-    margin: 10px;
-    border-radius: 5px;
+li{
+    display: block;
+    height: 25px;
+    line-height: 25px;
+    padding: 2px 5px;
+    transition: 0.2s;
 }
 
+li:nth-child(odd){ background: #F2F2F2; }
+
+li:nth-child(even){ background: #E5E5E5; }
+
+li:first-child{ border-radius: 3px 3px 0 0; }
+li:last-child{ border-radius: 0 0 3px 3px; }
+
+li img{
+    float: right;
+    margin-top: 4px;
+    cursor: pointer;
+}
+#siteForm{
+    height: 35px;
+}
+label{
+    font-size: 13px;
+}
+input[type="text"]{
+    border: thin solid #D6D1D1;
+    border-right: none;
+    width: 195px;
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 3px 0 0 3px;
+    padding: 0 3px;
+    transition: 0.2s;
+}
+input[type="text"]:hover{
+    border-color: #B5B5B5;
+}
+input[type="text"]:focus{
+    border-color: #878787;
+}
+
+input[type="submit"], button{
+    border: none;
+    border-radius: 0px;
+    color: #FFF;
+    height: 35px;
+    border-radius: 3px;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+input[type="submit"]{
+    margin-left: -4px;
+    height: 100%;
+    border-radius: 0 3px 3px 0;
+}
+
+select {
+    height: 35px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    border: thin solid #D6D1D1;
+    width: 100%;
+    background: #FFFFFF;
+}
+
+option{
+    height: 25px;
+    padding-top: 10px;
+}
+
+#reset{
+    float: right;
+    margin-bottom: 5px;
+}
+
+/*Colors*/
+.green{ background: #02CE9B; border: thin solid #00B587; }
+.red{ background: #FF6563; border: thin solid #ED5353; }
+
+.green:hover{ background: #00B587 }
+.red:hover{ background: #ED5353 }
+
+
+/* Background Color Selector */
 .radio-color{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */

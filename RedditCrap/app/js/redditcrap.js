@@ -26,7 +26,7 @@ function checkCrap() {
                 var shouldBeColoured = data.crappySites[index].indexOf(url) > -1;
                 if (shouldBeColoured) {
                     if (data.crappyAction === 1) {
-                        parentNode.style.backgroundColor = data.crappyColor;
+                        parentNode.style.backgroundColor = ((data.crappyColor == undefined) ? 'red' : data.crappyColor);
                     }
 
                     if (data.crappyAction === 2) {
