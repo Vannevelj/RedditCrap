@@ -1,7 +1,7 @@
 var shittyCrapSites = ['dailymail.co.uk', 'independent.co.uk', 'ibtimes.co.uk', 'huffingtonpost.com', 'rt.com', 'express.co.uk', 'telegraph.co.uk'];
 
 // We seed the storage with crappy sites if none are found yet
-chrome.storage.sync.get(['crappySites', 'crappyAction'], function (data) {
+chrome.storage.sync.get(['crappySites', 'crappyAction', 'crappyColor'], function (data) {
     if (!data.crappySites || data.crappySites.length === 0) {
         chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function () {});
     }
