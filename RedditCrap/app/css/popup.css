@@ -53,16 +53,16 @@ input[type="text"]{
     transition: 0.2s;
 }
 input[type="text"]:hover{
-    border-color: #B5B5B5;
+    border-colour: #B5B5B5;
 }
 input[type="text"]:focus{
-    border-color: #878787;
+    border-colour: #878787;
 }
 
 input[type="submit"], button{
     border: none;
     border-radius: 0px;
-    color: #FFF;
+    colour: #FFF;
     height: 35px;
     border-radius: 3px;
     transition: 0.2s;
@@ -95,7 +95,7 @@ option{
     margin-bottom: 5px;
 }
 
-/*Colors*/
+/*Colours*/
 .green{ background: #02CE9B; border: thin solid #00B587; }
 .red{ background: #FF6563; border: thin solid #ED5353; }
 
@@ -103,15 +103,15 @@ option{
 .red:hover{ background: #ED5353 }
 
 
-/* Background Color Selector */
-.radio-color{ /* HIDE RADIO */
+/* Background Colour Selector */
+.radio-colour{ /* HIDE RADIO */
   visibility: hidden; /* Makes input not-clickable */
   position: absolute; /* Remove input from document flow */
 }
-.radio-color + img{ /* IMAGE STYLES */
+.radio-colour + img{ /* IMAGE STYLES */
   cursor:pointer;
   border:2px solid transparent;
 }
-.radio-color:checked + svg{ /* (RADIO CHECKED) IMAGE STYLES */
+.radio-colour:checked + svg{ /* (RADIO CHECKED) IMAGE STYLES */
   border:2px solid #000;
 }

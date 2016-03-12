@@ -7,7 +7,8 @@ var counter = 1;
 // Finds all the appropriate domains in the DOM, checks whether they're blacklisted and acts accordingly
 function checkCrap() {
     var domains = document.getElementsByClassName('domain');
-    chrome.storage.sync.get(['crappySites', 'crappyAction','crappyColor'], function(data) {
+    chrome.storage.sync.get(['crappySites', 'crappyAction','crappyColour'], function(data) {
+        console.log(data.crappyColour);
         for (var i = 0; i < domains.length; i++) {
             // urls are in the form of '(url)'
             // (surrounded by brackets)
@@ -15,7 +16,7 @@ function checkCrap() {
 
             var parentNode = getParentByClass(domains[i], 'title');
             var entryNode = getThingNode(parentNode);
-            if (parentNode.style.backgroundColor === data.crappyColor ||
+            if (parentNode.style.backgroundColor === data.crappyColour ||
                 entryNode.style.display === 'none') {
 
                 parentNode.style.backgroundColor = '';
@@ -26,7 +27,7 @@ function checkCrap() {
                 var shouldBeColoured = data.crappySites[index].indexOf(url) > -1;
                 if (shouldBeColoured) {
                     if (data.crappyAction === 1) {
-                        parentNode.style.backgroundColor = ((data.crappyColor == undefined) ? 'red' : data.crappyColor);
+                        parentNode.style.backgroundColor = ((data.crappyColour == undefined) ? 'red' : data.crappyColour);
                     }
 
                     if (data.crappyAction === 2) {
