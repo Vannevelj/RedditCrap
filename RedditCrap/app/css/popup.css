@@ -53,16 +53,16 @@ input[type="text"]{
     transition: 0.2s;
 }
 input[type="text"]:hover{
-    border-colour: #B5B5B5;
+    border-color: #B5B5B5;
 }
 input[type="text"]:focus{
-    border-colour: #878787;
+    border-color: #878787;
 }
 
 input[type="submit"], button{
     border: none;
     border-radius: 0px;
-    colour: #FFF;
+    color: #FFF;
     height: 35px;
     border-radius: 3px;
     transition: 0.2s;
@@ -70,7 +70,7 @@ input[type="submit"], button{
 }
 
 input[type="submit"]{
-    margin-left: -4px;
+    margin-left: 0px;
     height: 100%;
     border-radius: 0 3px 3px 0;
 }
@@ -95,13 +95,12 @@ option{
     margin-bottom: 5px;
 }
 
-/*Colours*/
+/*Colors*/
 .green{ background: #02CE9B; border: thin solid #00B587; }
 .red{ background: #FF6563; border: thin solid #ED5353; }
 
 .green:hover{ background: #00B587 }
 .red:hover{ background: #ED5353 }
-
 
 /* Background Colour Selector */
 .radio-colour{ /* HIDE RADIO */

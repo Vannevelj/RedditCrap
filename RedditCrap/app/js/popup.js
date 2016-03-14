@@ -1,49 +1,57 @@
 var shittyCrapSites = ['dailymail.co.uk', 'independent.co.uk', 'ibtimes.co.uk', 'huffingtonpost.com', 'rt.com', 'express.co.uk', 'telegraph.co.uk'];
+var config;
 
-// We seed the storage with crappy sites if none are found yet
-chrome.storage.sync.get(['crappySites', 'crappyAction', 'crappyColour'], function (data) {
-    if (!data.crappySites || data.crappySites.length === 0) {
-        chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function () {});
-    }
+// We have to load our configuration file first
+var xhr = new XMLHttpRequest();
+xhr.onload = init;
+xhr.open("GET", chrome.extension.getURL('/app/conf/config.json'), true);
+xhr.send();
 
-    var selectElement = document.getElementById('crappyAction');
-    if (!data.crappyAction) {
-        chrome.storage.sync.set({ 'crappyAction': 1 }, function () {});
-    } else {
-        selectElement.selectedIndex = data.crappyAction;
-    }
+function init() {
+    config = JSON.parse(xhr.response);
 
-   var colourSelectionElement = document.getElementById('radioColour');
-    if (!data.crappyColour) {
-        var colour = document.querySelector('input[name = "colour"]:checked').value;
-        chrome.storage.sync.set({ 'crappyColour': colour }, function () {});
-    } else {
-        colourSelectionElement.value = data.crappyColour;
-    }
-});
+    // We seed the storage with crappy sites if none are found yet
+    chrome.storage.sync.get(['crappySites', 'crappyAction', 'crappycolour'], function(data) {
+        if (!data.crappySites || data.crappySites.length === 0) {
+            chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function() { });
+        }
 
-document.addEventListener('DOMContentLoaded', function () {
-    displayExistingFilters();
+        if (!data.crappyAction) {
+            chrome.storage.sync.set({ 'crappyAction': config.DESIRED_ACTION_HIGHLIGHT }, function() { });
+        }
+
+        if (!data.crappyColour) {
+            var colour = document.querySelector('input[name = "colour"]:checked').value;
+            chrome.storage.sync.set({ 'crappyColour': colour }, function () {});
+        }
+    });
+};
+
+document.addEventListener('DOMContentLoaded', function() {
+    displaySavedSettings();
 
     document.getElementById('siteForm').addEventListener('submit', add);
     document.getElementById('reset').addEventListener('click', reset);
     document.getElementById('crappyAction').addEventListener('change', actionSettingChanged);
+
     var radios = document.forms["radio-form"].elements["colour"];
-    
     for(var i = 0, max = radios.length; i < max; i++) {
-    radios[i].onclick = function() {
-        colourSettingChanged();
+        radios[i].onclick = function() {
+            colourSettingChanged();
+        }
     }
-}
 });
 
-function displayExistingFilters() {
-    // Get the existing filters from storage
-    chrome.storage.sync.get('crappySites', function (data) {
+function displaySavedSettings() {
+    // Get the existing values from storage
+    chrome.storage.sync.get(['crappySites', 'crappyAction','crappyColour'], function(data) {
         // Add them to the list
-        data.crappySites.forEach(function (element) {
+        data.crappySites.forEach(function(element) {
             addListElement(element);
         }, this);
+
+        var selectElement = document.getElementById('crappyAction');
+        selectElement.selectedIndex = data.crappyAction;
     });
 }
 
@@ -61,7 +69,7 @@ function addListElement(value) {
 
     var newCancelImage = document.createElement('img');
     newCancelImage.setAttribute('src', '../res/cross.png');
-    newCancelImage.addEventListener('click', function () { remove(value); });
+    newCancelImage.addEventListener('click', function() { remove(value); });
     newItem.appendChild(newCancelImage);
 
     resultList.appendChild(newItem);
@@ -69,20 +77,14 @@ function addListElement(value) {
 }
 
 function remove(value) {
-    chrome.storage.sync.get('crappySites', function (data) {
+    chrome.storage.sync.get('crappySites', function(data) {
         var sites = data.crappySites;
         console.log('trying to remove ' + value);
 
-        var newSites = [];
-        for (var i = 0; i < sites.length; i++) {
-            if (sites[i] !== value) {
-                newSites.push(sites[i]);
-            }
-        }
-
+        var newSites = sites.filter(site => site !== value);
         console.log('new list: ' + newSites);
 
-        chrome.storage.sync.set({ 'crappySites': newSites }, function () {});
+        chrome.storage.sync.set({ 'crappySites': newSites }, function() { });
 
         var resultList = document.getElementById('crappySites');
         resultList.removeChild(document.getElementById(value));
@@ -96,15 +98,15 @@ function add(e) {
     var value = inputField.value;
     addListElement(value);
 
-    chrome.storage.sync.get('crappySites', function (data) {
+    chrome.storage.sync.get('crappySites', function(data) {
         var sites = data.crappySites;
         sites.push(value);
-        chrome.storage.sync.set({ 'crappySites': sites }, function () {});
+        chrome.storage.sync.set({ 'crappySites': sites }, function() { });
     });
 }
 
 function reset() {
-    chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function () {});
+    chrome.storage.sync.set({ 'crappySites': shittyCrapSites }, function() { });
 
     var resultList = document.getElementById('crappySites');
     var newResultList = document.createElement('ul');
@@ -112,7 +114,7 @@ function reset() {
 
     resultList.parentElement.replaceChild(newResultList, resultList);
 
-    shittyCrapSites.forEach(function (element) {
+    shittyCrapSites.forEach(function(element) {
         addListElement(element);
     }, this);
 }
@@ -121,7 +123,7 @@ function actionSettingChanged() {
     var selectElement = document.getElementById('crappyAction');
     var selectedOption = selectElement.selectedIndex;
 
-    chrome.storage.sync.set({ 'crappyAction': selectedOption }, function () {});
+    chrome.storage.sync.set({ 'crappyAction': selectedOption }, function() { });
 }
 
 function colourSettingChanged() {

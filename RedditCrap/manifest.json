@@ -30,5 +30,8 @@
         "16": "app/res/icon16.png",
         "48": "app/res/icon48.png",
         "128": "app/res/icon128.png"
-    }
+    },
+    "web_accessible_resources": [
+        "app/conf/config.json"
+    ]
 }
