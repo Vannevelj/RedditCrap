@@ -12,7 +12,7 @@ xhr.send();
 
 // Finds all the appropriate domains in the DOM, checks whether they're blacklisted and acts accordingly
 function checkCrap() {
-    chrome.storage.sync.get(['crappySites', 'crappyAction'], function(data) {
+    chrome.storage.sync.get(['crappySites', 'crappyAction','crappyColour'], function(data) {
         var domains = Array.prototype.slice.call(document.getElementsByClassName('domain'));
 
         domains.map(function(domain) {
@@ -23,7 +23,7 @@ function checkCrap() {
                 entry: getThingNode(parentNode)
             }
         }).forEach(domainData => {
-            if (domainData.parent.style.backgroundColor === 'red' ||
+            if (domainData.parent.style.backgroundColor === data.crappyColour ||
                 domainData.entry.style.display === 'none') {
 
                 domainData.parent.style.backgroundColor = '';
@@ -32,7 +32,7 @@ function checkCrap() {
 
             if (data.crappySites.indexOf(domainData.url) > -1) {
                 if (data.crappyAction === config.DESIRED_ACTION_HIGHLIGHT) {
-                    domainData.parent.style.backgroundColor = 'red';
+                    domainData.parent.style.backgroundColor = ((data.crappyColour === undefined) ? config.DEFAULT_HIGHLIGHT_COLOUR : data.crappyColour);
                 }
 
                 if (data.crappyAction === config.DESIRED_ACTION_HIDE) {

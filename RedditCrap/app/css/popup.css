@@ -100,4 +100,18 @@ option{
 .red{ background: #FF6563; border: thin solid #ED5353; }
 
 .green:hover{ background: #00B587 }
+
 .red:hover{ background: #ED5353 }
+
+/* Background Colour Selector */
+.radio-colour{ /* HIDE RADIO */
+  visibility: hidden; /* Makes input not-clickable */
+  position: absolute; /* Remove input from document flow */
+}
+.radio-colour + img{ /* IMAGE STYLES */
+  cursor:pointer;
+  border:2px solid transparent;
+}
+.radio-colour:checked + svg{ /* (RADIO CHECKED) IMAGE STYLES */
+  border:2px solid #000;
+}
