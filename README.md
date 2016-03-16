@@ -6,7 +6,7 @@ All settings are stored in sync storage which allows them to be used across chro
 
 ---
 
-<img src="https://cloud.githubusercontent.com/assets/2777107/13683338/6effbd0e-e706-11e5-8c17-7b366ecd59ce.PNG">
+<img src="https://cloud.githubusercontent.com/assets/2777107/13801628/ec7a8dc8-eb33-11e5-9067-d8c0a541579c.PNG">
 
 <img src="https://cloud.githubusercontent.com/assets/2777107/13683342/703214ec-e706-11e5-9e8f-3b473089e60d.PNG">
 
@@ -14,18 +14,15 @@ All settings are stored in sync storage which allows them to be used across chro
 
 # FAQ
 
-## Your UI sucks
+## I found a bug -- what do I do?
 
-So does your mom.
+[Create a new issue](https://github.com/Vannevelj/RedditCrap/issues/new) and describe the problem in detail.
 
-## No but really, it sucks
+## I think I can add value -- what can I do?
 
-I'm very much aware of it. Feel free to make a PR and prettify it.
-
-## Your code also sucks
-
-I'm not typically a Javascript dev so this is me venturing in these lands. 
-I do appreciate any pointers you might have on improving the code so get in touch with me (email, PR, issue, etc) and let me know what can be improved.
+Take a look at [the open issues](https://github.com/Vannevelj/RedditCrap/issues) to see what's in store and what should be fixed.
+If you want to propose something, feel free to create an issue and lay out what it is you're thinking about.
+Any remarks about the code or UI are welcome as well.
 
 ## What features are planned?
 
@@ -34,3 +31,9 @@ Take a look here: https://github.com/Vannevelj/RedditCrap/labels/feature
 ## Who should I contact for enormous donations and/or job offers?
 
 Shoot me an email at jer_vannevel@outlook.com
+
+## Who contributed to the project?
+
+Jeroen Vannevel  
+Nijraj Gelani  
+Tom McGee  
