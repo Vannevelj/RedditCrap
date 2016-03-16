@@ -100,6 +100,7 @@ option{
 .red{ background: #FF6563; border: thin solid #ED5353; }
 
 .green:hover{ background: #00B587 }
+
 .red:hover{ background: #ED5353 }
 
 /* Background Colour Selector */
