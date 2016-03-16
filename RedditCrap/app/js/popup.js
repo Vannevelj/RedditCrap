@@ -52,6 +52,19 @@ function displaySavedSettings() {
 
         var selectElement = document.getElementById('crappyAction');
         selectElement.selectedIndex = data.crappyAction;
+
+    var radios = document.forms["radio-form"].elements["colour"];
+    var button;
+    for(var i = 0, max = radios.length; i < max; i++) 
+    {
+        if (radios[i].value == data.crappyColour)
+        {
+            radios[i].checked = true;
+        }
+    }
+    
+
+
     });
 }
 
