@@ -60,6 +60,7 @@ function displaySavedSettings() {
         if (radios[i].value == data.crappyColour)
         {
             radios[i].checked = true;
+            break;
         }
     }
     
