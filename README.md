@@ -4,6 +4,8 @@ It provides a few sources by default and allows the user to add or remove from t
 
 All settings are stored in sync storage which allows them to be used across chrome instances.
 
+Chrome extension: https://chrome.google.com/webstore/detail/redditcrap/kkbdfmnmdigakifakfglcokgohgolgan
+
 ---
 
 <img src="https://cloud.githubusercontent.com/assets/2777107/13801628/ec7a8dc8-eb33-11e5-9067-d8c0a541579c.PNG">
