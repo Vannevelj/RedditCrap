@@ -55,7 +55,7 @@ function displaySavedSettings() {
 
     var radios = document.forms["radio-form"].elements["colour"];
     var button;
-    for(var i = 0, max = radios.length; i < max; i++) 
+    for(var i = 0; i < radios.length; i++) 
     {
         if (radios[i].value == data.crappyColour)
         {
