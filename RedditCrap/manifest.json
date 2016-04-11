@@ -15,6 +15,7 @@
                 "http://www.reddit.com/*",
                 "https://www.reddit.com/*"
             ],
+            "exclude_globs": ["http://reddit.com/r/*/comments/*"],
             "js": [
                 "app/js/redditcrap.js"
             ],
